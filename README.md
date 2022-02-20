@@ -632,7 +632,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                       <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
                     </div>
                     <div class="io-description">
                     </div>
@@ -698,7 +698,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                      <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
                     </div>
                     <div class="io-description">
                     </div>

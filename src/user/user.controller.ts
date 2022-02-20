@@ -11,7 +11,9 @@ export class UserController {
   }
 
   @Post('login')
-  async login(@Body() data: UserDto) {
+  async login(
+    @Body() data: UserDto,
+  ): Promise<{ message: string; token?: string }> {
     return await this.authService.login(data);
   }
 }

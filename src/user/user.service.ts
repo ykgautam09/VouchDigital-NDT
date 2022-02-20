@@ -14,7 +14,7 @@ export class UserService {
     private readonly contactModel: Model<User>,
   ) {}
 
-  async register(data: UserDto) {
+  async register(data: UserDto): Promise<{ message: string }> {
     const user = await this.contactModel.create(data);
     if (!user)
       throw new BadRequestException(data, 'could not register new user');
@@ -22,7 +22,7 @@ export class UserService {
     return { message: 'registration Successfully' };
   }
 
-  async login(data: UserDto) {
+  async login(data: UserDto): Promise<{ message: string; token?: string }> {
     const { contactNo, password } = data;
     try {
       const user = await this.contactModel.findOne({
