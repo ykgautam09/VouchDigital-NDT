@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Contact } from './contact.schema';
 import { RuntimeException } from '@nestjs/core/errors/exceptions/runtime.exception';
 import { NotFoundException } from '@nestjs/common/exceptions';
+import { ContactDto } from './dto/contact.dto';
 
 @Injectable()
 export class ContactService {
@@ -12,7 +13,7 @@ export class ContactService {
     private readonly contactModel: Model<Contact>,
   ) {}
 
-  async addSingleContact(data: any) {
+  async addSingleContact(data: ContactDto) {
     const newContact = await this.contactModel.create(data);
     const contactObject = await newContact.save();
     if (contactObject.id === null)
@@ -20,7 +21,7 @@ export class ContactService {
     return contactObject.id as string;
   }
 
-  async addMultipleContact(data: any[]) {
+  async addMultipleContact(data: ContactDto[]) {
     let newContact, contactObject;
     data.map(async (contact) => {
       newContact = await this.contactModel.create(contact);
@@ -28,10 +29,10 @@ export class ContactService {
       if (contactObject.id === null)
         throw new RuntimeException('Server unable to perform request');
     });
-    return { messege: 'data saved successfully' };
+    return { message: 'data saved successfully' };
   }
 
-  async getSingleContact(id: string) {
+  async getSingleContact(id: string): Promise<Contact> {
     const contact = await this.contactModel.findOne({ _id: id }).exec();
     if (contact === null)
       throw new NotFoundException(
@@ -41,7 +42,7 @@ export class ContactService {
     return contact;
   }
 
-  async getAllContact(page: number, limit: number) {
+  async getAllContact(page: number, limit: number): Promise<Contact[]> {
     if (page === null) page = 1;
     if (limit === null) limit = 10;
     const skip = (page - 1) * limit;
@@ -61,9 +62,9 @@ export class ContactService {
     return contact;
   }
 
-  async filterContact(name: string, contact: number) {
+  async filterContact(name: string, contact: number): Promise<Contact[]> {
     const contacts = await this.contactModel
-      .findOne({ $or: [{ name }, { contact }] }) // { $or: name | contact }
+      .find({ $or: [{ name }, { contact }] }) // { $or: name | contact }
       .exec();
     if (contact === null)
       throw new NotFoundException(

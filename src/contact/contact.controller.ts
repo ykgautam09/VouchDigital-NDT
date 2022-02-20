@@ -9,24 +9,27 @@ import {
   Query,
 } from '@nestjs/common';
 import { ContactService } from './contact.service';
-import { ContactInputDto } from './dto/contact.input.dto';
+import { ContactDto } from './dto/contact.dto';
+import { Contact } from './contact.schema';
 
 @Controller('api/contact')
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
   @Post('add')
-  async addSingleContact(@Body() data: ContactInputDto) {
+  async addSingleContact(@Body() data: ContactDto): Promise<string> {
     return await this.contactService.addSingleContact(data);
   }
 
   @Post('add-multiple')
-  async addMultipleContact(@Body() data: ContactInputDto[]) {
+  async addMultipleContact(
+    @Body() data: ContactDto[],
+  ): Promise<{ message: string }> {
     return await this.contactService.addMultipleContact(data);
   }
 
   @Get(':id')
-  async getSingleContact(@Param('id') id: string) {
+  async getSingleContact(@Param('id') id: string): Promise<Contact> {
     return await this.contactService.getSingleContact(id);
   }
 
@@ -34,7 +37,7 @@ export class ContactController {
   async getAllContact(
     @Query('limit') limit: number,
     @Query('page') page: number,
-  ) {
+  ): Promise<Contact[]> {
     return await this.contactService.getAllContact(page, limit);
   }
 
@@ -44,7 +47,7 @@ export class ContactController {
     name: string,
     @Query('contact')
     contact: number,
-  ) {
+  ): Promise<Contact[]> {
     return await this.contactService.filterContact(name, contact);
   }
 
@@ -54,7 +57,7 @@ export class ContactController {
     data: object,
     @Param('id')
     id: string,
-  ) {
+  ): Promise<{ id: string; message: string }> {
     return await this.contactService.updateContact(id, data);
   }
 
@@ -62,7 +65,7 @@ export class ContactController {
   async deleteContact(
     @Param('id')
     id: string,
-  ) {
+  ): Promise<{ message: string }> {
     return await this.contactService.deleteContact({ id });
   }
 }
