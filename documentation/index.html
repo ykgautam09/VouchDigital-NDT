@@ -31,24 +31,23 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<div class="content-data"><ol class="breadcrumb">
-  <li>Controllers</li>
-  <li>ContactController</li>
-</ol><ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-        </li>
-        <li>
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
-</ul><div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
-        <p class="comment">
-            </p><h3>File</h3>
-        <p></p>
-        <p class="comment">
-            <code>src/contact/contact.controller.ts</code>
-        </p>
+<h2 id="address-book">Address Book</h2>
+<h4 id="dependency">Dependency</h4>
+<ul>
+<li>NodeJS (v16.14.0 or newer)</li>
+<li>npm (v8.3.1 or newer)</li>
+<li>mongodb</li>
+</ul>
+
+<h4 id="installation">Installation</h4>
+<ol>
+<li>clone the repository</li>
+<li>install node dependency run `npm i`</li>
+<li>run start script `npm start`</li>
+</ol>
+
+<h3 id="api-documentation">API Documentation</h3>
+<div class="tab-pane fade active in" id="c-info">
             <p class="comment">
                 </p><h3>Prefix</h3>
             <p></p>
@@ -569,7 +568,180 @@
     </table></section>   
 </div></div></div>
 
-
+<hr>
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+            <p class="comment">
+                </p><h3>Prefix</h3>
+            <p></p>
+            <p class="comment">
+                <code>api/auth</code>
+            </p>
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+               <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#login">login</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#register">register</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="login"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span><b>login</b></span>
+                        <a href="#login"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>login(data: <a href="../interfaces/User.html" target="_self">UserDto</a>)</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br>
+                    <code>@Post('login')<br></code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user/user.controller.ts:14</a></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../interfaces/User.html" target="_self">UserDto</a></code>
+                                    </td>
+                                    <td>
+                                        No
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+                    </div>
+                    <div class="io-description">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="register"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span><b>register</b></span>
+                        <a href="#register"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>register(data: <a href="../interfaces/User.html" target="_self">UserDto</a>)</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br>
+                    <code>@Post('register')<br></code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/user/user.controller.ts:9</a></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../interfaces/User.html" target="_self">UserDto</a></code>
+                                    </td>
+                                    <td>
+                                        No
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+                    </div>
+                    <div class="io-description">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    
+</div>
+</div>
 
 
 

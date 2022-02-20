@@ -176,7 +176,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -281,7 +281,9 @@ export class UserController {
   }
 
   @Post(&#x27;login&#x27;)
-  async login(@Body() data: UserDto) {
+  async login(
+    @Body() data: UserDto,
+  ): Promise&lt;{ message: string; token?: string }&gt; {
     return await this.authService.login(data);
   }
 }

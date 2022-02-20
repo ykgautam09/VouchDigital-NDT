@@ -225,7 +225,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -296,7 +296,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -328,7 +328,7 @@ export class UserService {
     private readonly contactModel: Model&lt;User&gt;,
   ) {}
 
-  async register(data: UserDto) {
+  async register(data: UserDto): Promise&lt;{ message: string }&gt; {
     const user &#x3D; await this.contactModel.create(data);
     if (!user)
       throw new BadRequestException(data, &#x27;could not register new user&#x27;);
@@ -336,7 +336,7 @@ export class UserService {
     return { message: &#x27;registration Successfully&#x27; };
   }
 
-  async login(data: UserDto) {
+  async login(data: UserDto): Promise&lt;{ message: string; token?: string }&gt; {
     const { contactNo, password } &#x3D; data;
     try {
       const user &#x3D; await this.contactModel.findOne({
