@@ -33,7 +33,10 @@ export class UserService {
       const token = this.jwtService.sign({ contactNo });
       return { message: 'login successful', token };
     } catch (e) {
-      throw new BadRequestException(data, 'Credentials does not matched');
+      throw new BadRequestException(
+        { Error: 'Credentials does not matched', data },
+        'Credentials does not matched',
+      );
     }
   }
 }
