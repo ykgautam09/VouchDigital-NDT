@@ -1,12 +1,15 @@
-import { Schema, Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-export const ContactSchema = new Schema({
-  name: { type: String, required: true },
-  contactNo: { type: Number, required: true },
-});
+export type ContactDocument = Contact & Document;
 
-export interface Contact extends Document {
-  id: string;
+@Schema()
+export class Contact {
+  @Prop()
   name: string;
+
+  @Prop()
   contactNo: number;
 }
+
+export const ContactSchema = SchemaFactory.createForClass(Contact);

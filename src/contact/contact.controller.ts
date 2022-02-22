@@ -28,11 +28,6 @@ export class ContactController {
     return await this.contactService.addMultipleContact(data);
   }
 
-  @Get(':id')
-  async getSingleContact(@Param('id') id: string): Promise<Contact> {
-    return await this.contactService.getSingleContact(id);
-  }
-
   @Get('all')
   async getAllContact(
     @Query('limit') limit: number,
@@ -51,13 +46,18 @@ export class ContactController {
     return await this.contactService.filterContact(name, contact);
   }
 
+  @Get(':id')
+  async getSingleContact(@Param('id') id: string): Promise<Contact> {
+    return await this.contactService.getSingleContact(id);
+  }
+
   @Put('update/:id')
   async updateContact(
     @Body()
     data: object,
     @Param('id')
     id: string,
-  ): Promise<{ id: string; message: string }> {
+  ): Promise<{ id: any; message: string }> {
     return await this.contactService.updateContact(id, data);
   }
 

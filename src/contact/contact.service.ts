@@ -49,7 +49,6 @@ export class ContactService {
 
     const contact = await this.contactModel
       .find({})
-      .exists(true)
       .skip(skip)
       .limit(limit)
       .exec();
@@ -58,7 +57,6 @@ export class ContactService {
         { Error: 'NOT_FOUND', page, limit },
         'Data does not exists',
       );
-
     return contact;
   }
 
