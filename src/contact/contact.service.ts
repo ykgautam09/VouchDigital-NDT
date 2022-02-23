@@ -5,6 +5,7 @@ import { Contact } from './contact.schema';
 import { RuntimeException } from '@nestjs/core/errors/exceptions/runtime.exception';
 import { NotFoundException } from '@nestjs/common/exceptions';
 import { ContactDto } from './dto/contact.dto';
+import { filterContactDto } from './dto/filter-contact.dto';
 
 @Injectable()
 export class ContactService {
@@ -60,13 +61,23 @@ export class ContactService {
     return contact;
   }
 
-  async filterContact(name: string, contact: number): Promise<Contact[]> {
+  async filterContact(query: Partial<filterContactDto>): Promise<Contact[]> {
+    // eslint-disable-next-line prefer-const
+    let { page, limit, ...contactQuery } = query;
+    if (page === null) page = 1;
+    if (limit === null) limit = 10;
+    const skip = (page - 1) * limit;
+
     const contacts = await this.contactModel
-      .find({ $or: [{ name }, { contact }] }) // { $or: name | contact }
+      .find({})
+      .where(contactQuery)
+      .skip(skip)
+      .limit(limit)
       .exec();
-    if (contact === null)
+
+    if (contacts === null)
       throw new NotFoundException(
-        { Error: 'NOT_FOUND', name, contact },
+        { Error: 'NOT_FOUND', query },
         'no data found for the query',
       );
     return contacts;

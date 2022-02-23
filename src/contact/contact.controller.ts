@@ -11,6 +11,7 @@ import {
 import { ContactService } from './contact.service';
 import { ContactDto } from './dto/contact.dto';
 import { Contact } from './contact.schema';
+import { filterContactDto } from './dto/filter-contact.dto';
 
 @Controller('api/contact')
 export class ContactController {
@@ -38,12 +39,9 @@ export class ContactController {
 
   @Get('filter')
   async filterContact(
-    @Query('name')
-    name: string,
-    @Query('contact')
-    contact: number,
+    @Query() query: Partial<filterContactDto>,
   ): Promise<Contact[]> {
-    return await this.contactService.filterContact(name, contact);
+    return await this.contactService.filterContact(query);
   }
 
   @Get(':id')
